@@ -1,12 +1,26 @@
 ﻿@page "/"
 @code {
-    private string seconds = string.Empty;
+    private TimeSpan last;
+    private Pulse r;
+    private Pulse g;
+    private Pulse b;
+
     private void OnUpdate(TimeSpan timestamp)
     {
-        seconds = timestamp.TotalSeconds.ToString("###0.0000");
+        var diff = timestamp.Subtract(last).TotalSeconds;
+        last = timestamp;
+
+        r.Tick(diff);
+        g.Tick(diff/2.0);
+        b.Tick(diff/3.0);
     }
 }
 
 <RAF UpdateState="OnUpdate">
-    Hello, @seconds
+    <svg viewBox="0 0 300 100">
+        <rect x="0" y="0" width="300" height="100" fill="rgb(@(r.Value*255), @(g.Value*255), @(b.Value*255))" />
+        <text x="20" y="50">R=@(r.Value.ToString("0.####"))</text>
+        <text x="120" y="50">G=@(g.Value.ToString("0.####"))</text>
+        <text x="220" y="50">B=@(b.Value.ToString("0.####"))</text>
+    </svg>
 </RAF>
