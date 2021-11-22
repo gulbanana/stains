@@ -20,6 +20,12 @@ jobs:
 
       - name: Publish .NET Project
         run: dotnet publish Stains.csproj -c Release -o artifacts --nologo
+
+      - name: Rewrite base href
+        uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+        with:
+          html_path: artifacts/wwwroot/index.html
+          base_href: /stains/
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v4
