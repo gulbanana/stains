@@ -26,9 +26,6 @@ jobs:
         with:
           html_path: artifacts/wwwroot/index.html
           base_href: /stains/
-
-      - name: Fallback route via special 404 page
-        run: cp artifacts/wwwroot/index.html artifacts/wwwroot/404.html
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v4
