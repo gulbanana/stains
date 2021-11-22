@@ -1,9 +1,9 @@
 ﻿@implements IDisposable
 @inject IJSRuntime JS
 @code {
-    [Parameter] public RenderFragment<string>? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public Action<TimeSpan>? UpdateState { get; set; }
     private IJSInProcessObjectReference? module;
-    private double seconds;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -22,9 +22,9 @@
     [JSInvokable]
     public void OnFrame(double timestampMilliseconds)
     {
-        seconds = timestampMilliseconds / 1000.0;
+        UpdateState?.Invoke(TimeSpan.FromMilliseconds(timestampMilliseconds));
         StateHasChanged();
     }
 }
 
-<span>@ChildContent?.Invoke(seconds.ToString("###0.0000"))</span>
+@ChildContent

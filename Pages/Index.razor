@@ -1,5 +1,12 @@
 ﻿@page "/"
+@code {
+    private string seconds = string.Empty;
+    private void OnUpdate(TimeSpan timestamp)
+    {
+        seconds = timestamp.TotalSeconds.ToString("###0.0000");
+    }
+}
 
-<RAF>
-    Hello, @context
+<RAF UpdateState="OnUpdate">
+    Hello, @seconds
 </RAF>
