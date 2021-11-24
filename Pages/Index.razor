@@ -1,18 +1,16 @@
 ﻿@page "/"
 @code {
-    private TimeSpan last;
     private Pulse r;
     private Pulse g;
     private Pulse b;
 
-    private void OnUpdate(TimeSpan timestamp)
+    private void OnUpdate(TimeSpan elapsed)
     {
-        var diff = timestamp.Subtract(last).TotalSeconds;
-        last = timestamp;
+        var delta = elapsed.TotalSeconds;
 
-        r.Tick(diff);
-        g.Tick(diff/2.0);
-        b.Tick(diff/3.0);
+        r.Tick(delta);
+        g.Tick(delta/2.0);
+        b.Tick(delta/3.0);
     }
 }
 

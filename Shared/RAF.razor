@@ -4,6 +4,7 @@
     [Parameter] public RenderFragment? ChildContent { get; set; }
     [Parameter] public Action<TimeSpan>? UpdateState { get; set; }
     private IJSInProcessObjectReference? module;
+    private TimeSpan last;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -22,7 +23,14 @@
     [JSInvokable]
     public void OnFrame(double timestampMilliseconds)
     {
-        UpdateState?.Invoke(TimeSpan.FromMilliseconds(timestampMilliseconds));
+        var timestamp = TimeSpan.FromMilliseconds(timestampMilliseconds);
+        if (last != TimeSpan.Zero)
+        {
+            var diff = timestamp.Subtract(last);
+            UpdateState?.Invoke(diff);
+        }
+        last = timestamp;
+
         StateHasChanged();
     }
 }
