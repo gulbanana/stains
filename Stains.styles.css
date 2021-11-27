@@ -1,4 +1,52 @@
-/* /Shared/MainLayout.razor.rz.scp.css */
-main[b-jw8iarpuyl] {
+/* /Components/MainLayout.razor.rz.scp.css */
+.column-container[b-7yvlaqrl55] {
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+main[b-7yvlaqrl55] {
+    max-width: 1920px;
+    max-height: 1080px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+/* /Components/Story.razor.rz.scp.css */
+.reader[b-224sekauji] {
+    border: 2px solid #ccc;
+    overflow-y: auto;
+}
+
+.reader > :first-child[b-224sekauji] {
+    margin-top: 0;
+}
+
+.reader > :last-child[b-224sekauji] {
+    margin-bottom: 0;
+}
+
+p[b-224sekauji] {
+    transition: opacity 0.3s ease-in;
+    opacity: 0;
+}
+
+p.seen[b-224sekauji] {
+    opacity: 1;
+}
+
+p.center[b-224sekauji] {
+    text-align: center;
+}
+
+p.choice[b-224sekauji] {
+    cursor: pointer;
+    color: blue;
+}
+/* /Pages/Index.razor.rz.scp.css */
+.columns[b-p8jy6tvibw] {
+    max-height: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.618fr;
+    grid-template-rows: 1fr;
 }
