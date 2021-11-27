@@ -17,6 +17,7 @@ main[b-7yvlaqrl55] {
 /* /Components/Map.razor.rz.scp.css */
 svg[b-d3thpju1y5] {
     align-self: center;
+    font-size: 32px;
 }
 /* /Components/ScreenArea.razor.rz.scp.css */
 .border[b-v2c6xlak14] {
@@ -56,10 +57,10 @@ p.choice[b-224sekauji] {
 }
 /* /Pages/Index.razor.rz.scp.css */
 .columns[b-p8jy6tvibw] {
-    min-width: 960px;
+    min-width: 944px;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 726fr 1170fr;
+    grid-template-columns: 684fr 1212fr;
     grid-template-rows: 1fr;
     column-gap: 8px;
 }
