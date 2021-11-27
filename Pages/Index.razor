@@ -1,24 +1,8 @@
 ﻿@page "/"
-@code {
-    private Pulse r;
-    private Pulse g;
-    private Pulse b;
 
-    private void OnUpdate(TimeSpan elapsed)
-    {
-        var delta = elapsed.TotalSeconds;
+<PageTitle>Stains</PageTitle>
 
-        r.Tick(delta);
-        g.Tick(delta/2.0);
-        b.Tick(delta/3.0);
-    }
-}
-
-<RAF UpdateState="OnUpdate">
-    <svg viewBox="0 0 300 100">
-        <rect x="0" y="0" width="300" height="100" fill="rgb(@(r.Value*255), @(g.Value*255), @(b.Value*255))" />
-        <text x="20" y="50">R=@(r.Value.ToString("0.####"))</text>
-        <text x="120" y="50">G=@(g.Value.ToString("0.####"))</text>
-        <text x="220" y="50">B=@(b.Value.ToString("0.####"))</text>
-    </svg>
-</RAF>
+<div class="columns">
+    <Story />
+    <RGB />
+</div>

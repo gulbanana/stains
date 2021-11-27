@@ -1,6 +1,6 @@
 ﻿namespace Stains
 {
-    struct Pulse
+    public struct Pulse
     {
         public double Value;
         private bool decreasing;

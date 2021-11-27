@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+@inject HttpClient HTTP
+@code {
+    private State.Game game;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var story = await HTTP.GetStringAsync("script.json");
+        game = new(story);
+    }
+}
+
+@if (game != null)
+{
+    <div class="column-container">
+        <main>
+            <CascadingValue Value="game" IsFixed>
+                <RAF UpdateState="game.Update">
+                    @* nav could go here *@
+                    @Body
+                </RAF>
+            </CascadingValue>
+        </main>
+    </div>
+}
+else
+{
+    <span>Loading data...</span>
+}

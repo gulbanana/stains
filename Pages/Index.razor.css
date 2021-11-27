@@ -1,0 +1,7 @@
+.columns {
+    max-height: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.618fr;
+    grid-template-rows: 1fr;
+}

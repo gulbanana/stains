@@ -1,0 +1,30 @@
+.reader {
+    border: 2px solid #ccc;
+    overflow-y: auto;
+}
+
+.reader > :first-child {
+    margin-top: 0;
+}
+
+.reader > :last-child {
+    margin-bottom: 0;
+}
+
+p {
+    transition: opacity 0.3s ease-in;
+    opacity: 0;
+}
+
+p.seen {
+    opacity: 1;
+}
+
+p.center {
+    text-align: center;
+}
+
+p.choice {
+    cursor: pointer;
+    color: blue;
+}
