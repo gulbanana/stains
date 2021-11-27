@@ -1,19 +1,31 @@
 /* /Components/MainLayout.razor.rz.scp.css */
 .column-container[b-7yvlaqrl55] {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
+    height: 100vh;
+    overflow: auto;
+    display: grid;
+    justify-items: center;
 }
 
 main[b-7yvlaqrl55] {
     max-width: 1920px;
     max-height: 1080px;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
+    row-gap: 8px;
+    padding: 8px;
+}
+/* /Components/Map.razor.rz.scp.css */
+svg[b-d3thpju1y5] {
+    align-self: center;
+}
+/* /Components/ScreenArea.razor.rz.scp.css */
+.border[b-v2c6xlak14] {
+    border: 2px solid #ccc;
+    padding: 4px;
+    display: grid;
 }
 /* /Components/Story.razor.rz.scp.css */
 .reader[b-224sekauji] {
-    border: 2px solid #ccc;
     overflow-y: auto;
 }
 
@@ -44,9 +56,10 @@ p.choice[b-224sekauji] {
 }
 /* /Pages/Index.razor.rz.scp.css */
 .columns[b-p8jy6tvibw] {
-    max-height: 100%;
+    min-width: 960px;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 1.618fr;
+    grid-template-columns: 726fr 1170fr;
     grid-template-rows: 1fr;
+    column-gap: 8px;
 }
