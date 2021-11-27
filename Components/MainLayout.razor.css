@@ -1,12 +1,15 @@
 .column-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
+    height: 100vh;
+    overflow: auto;
+    display: grid;
+    justify-items: center;
 }
 
 main {
     max-width: 1920px;
     max-height: 1080px;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 1fr;
+    row-gap: 8px;
+    padding: 8px;
 }

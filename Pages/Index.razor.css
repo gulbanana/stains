@@ -1,7 +1,8 @@
 .columns {
-    max-height: 100%;
+    min-width: 944px;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 1.618fr;
+    grid-template-columns: 684fr 1212fr;
     grid-template-rows: 1fr;
+    column-gap: 8px;
 }
