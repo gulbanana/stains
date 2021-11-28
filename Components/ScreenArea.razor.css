@@ -2,4 +2,5 @@
     border: 2px solid #ccc;
     padding: 4px;
     display: grid;
+    overflow: hidden;
 }

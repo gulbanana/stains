@@ -15,8 +15,7 @@ public class Narrative
     public Narrative(Story story)
     {
         this.story = story;
-        Log.Add(new(pseq++, story.Continue()));
-        Choices.Add(GetContinue());
+        continueOnce = true;
     }
 
     public void Update()
@@ -38,6 +37,7 @@ public class Narrative
             {
                 foreach (var choice in story.currentChoices)
                 {
+                    Console.WriteLine(choice);
                     Choices.Add((choice.index, new(pseq + choice.index, choice.text)));
                 }
             }
