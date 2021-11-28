@@ -12,4 +12,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Ink.Engine.Runtime-Unofficial" Version="1.0.0-nightly-21022223" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Watch Include="script.ink" />
+  </ItemGroup>
+
+  <Target Name="Inklecate" BeforeTargets="CoreCompile" Inputs="script.ink" Outputs="wwwroot/script.json">
+    <Exec Command="inklecate -o wwwroot/script.json script.ink" />
+    <Message Importance="high" Text="script.ink -> wwwroot\script.json" />
+  </Target>
 </Project>

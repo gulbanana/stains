@@ -17,6 +17,18 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.0.x'
+      
+      - name: Setup Ink
+        uses: robinraju/release-downloader@v1.2
+        with:
+          repository: inkle/ink
+          tag: v1.0.0
+          fileName: inklecate_linux.zip
+      
+      - shell: pwsh
+        run: |
+          Expand-Archive .\inklecate_linux.zip .;
+          echo "inklecate_linux" | Out-File -FilePath $env:GITHUB_PATH -Append
 
       - name: Publish .NET Project
         run: dotnet publish -c Release -o artifacts --nologo
