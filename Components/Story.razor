@@ -12,7 +12,7 @@
         {
             module = await JS.InvokeAsync<IJSInProcessObjectReference>("import", "./Components/Story.razor.js");
         }
-        else if (needsScroll)
+        else if (needsScroll && module != null)
         {
             needsScroll = false;
             module.InvokeVoid("scroll", reader);
