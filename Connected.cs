@@ -15,3 +15,22 @@ public class Connected : ComponentBase, IDisposable
         State.Updated -= StateHasChanged;
     }
 }
+
+public abstract class Connected<T> : ComponentBase, IDisposable
+{
+    [CascadingParameter] public State.Game Game { get; set; }
+    protected T State;
+
+    protected abstract T Project(State.Game game);
+
+    protected override void OnInitialized()
+    {
+        Game.Updated += StateHasChanged;
+        State = Project(Game);
+    }
+
+    public void Dispose()
+    {
+        Game.Updated -= StateHasChanged;
+    }
+}

@@ -1,9 +1,12 @@
-@inherits Connected
+@inherits Connected<State.Blueprint>
+@code {
+    protected override State.Blueprint Project(State.Game game) => game.Blueprint;
+}
 
 <svg viewBox="0 0 1200 950">
-    <rect x="200" y="426" width="800" height="200" fill="rgb(@(State.r.Value*255), @(State.g.Value*255), @(State.b.Value*255))" />
-    <rect x="400" y="425" width="100" height="202" fill="white" />
-    <rect x="700" y="425" width="100" height="202" fill="white" />
+    <rect x="200" y="375" width="800" height="200" fill="rgb(@(State.r.Value*255), @(State.g.Value*255), @(State.b.Value*255))" />
+    <rect x="400" y="374" width="100" height="202" fill="white" />
+    <rect x="700" y="374" width="100" height="202" fill="white" />
     <text y="529">
         <tspan x="249" dy="0em">@(State.rname)</tspan>
         <tspan x="249" dy="1em">@(State.r.Value.ToString("0.####"))</tspan>

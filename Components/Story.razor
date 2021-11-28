@@ -1,5 +1,7 @@
-@inherits Connected
+@inherits Connected<State.Narrative>
 @code {
+    protected override State.Narrative Project(State.Game game) => game.Narrative;
+
     private string Classes(State.Paragraph p)
     {
         var classes = new List<string>();
@@ -10,7 +12,7 @@
 }
 
 <div class="reader">
-    @foreach (var p in State.Narrative)
+    @foreach (var p in State.Log)
     {
         <p @key="p.Seq" class="@Classes(p)">@p.Text</p>
         @if (!p.Seen) { p.Seen = true; }
