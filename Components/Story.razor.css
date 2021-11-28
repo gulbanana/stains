@@ -1,5 +1,6 @@
 .reader {
     overflow-y: auto;
+    background-color: #e8e9c9;
 }
 
 .reader > :first-child {

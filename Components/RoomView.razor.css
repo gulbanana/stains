@@ -1,0 +1,9 @@
+path {
+    fill: transparent;
+    stroke: white;
+    stroke-width: 2px;
+}
+
+path.floor {
+    fill: rgba(255, 255, 255, 0.5)
+}

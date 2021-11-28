@@ -21,8 +21,6 @@ public class Narrative
 
     public void Update()
     {
-        Tags.Clear();            
-
         if (continueOnce)
         {
             continueOnce = false;

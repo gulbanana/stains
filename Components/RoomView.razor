@@ -1,0 +1,6 @@
+@code {
+    [Parameter] public string Path { get; set; }
+    [Parameter] public bool IsCurrent { get; set; }
+}
+
+<path class="@(IsCurrent ? "floor" : "")" d="@Path" />

@@ -20,24 +20,28 @@ public class Game
         Narrative.Update();
         Blueprint.Update(elapsed);
 
-        foreach (var tag in Narrative.Tags)
+        if (Narrative.Tags.Any())
         {
-            switch (tag)
+            foreach (var tag in Narrative.Tags)
             {
-                case "introduce: Nigel":
-                    Blueprint.rname = "Nigel Planet";
-                    break;
-
-                case "introduce: Brenda":
-                    Blueprint.gname = "Brenda Avatar";
-                    break;
-
-                case "introduce: Cops":
-                    Blueprint.bname = "The Cops";
-                    break;
+                ProcessTag(tag);
             }
+            Narrative.Tags.Clear();            
         }
 
         Updated?.Invoke();
+    }
+
+    private void ProcessTag(string tag)
+    {
+        if (tag.StartsWith("move"))
+        {
+            var roomName = tag[5..];
+            var room = Blueprint.GetAllRooms().SingleOrDefault(r => r.Name.Equals(roomName, StringComparison.OrdinalIgnoreCase));
+            Blueprint.CurrentLocation = room;
+            return;
+        }
+
+        Console.WriteLine("UNKNOWN TAG " + tag);
     }
 }
