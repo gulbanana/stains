@@ -1,6 +1,23 @@
 @inherits Connected<State.Narrative>
+@inject IJSRuntime JS
 @code {
     protected override State.Narrative Project(State.Game game) => game.Narrative;
+    private IJSInProcessObjectReference module;
+    private ElementReference reader;
+    private bool needsScroll;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JS.InvokeAsync<IJSInProcessObjectReference>("import", "./Components/Story.razor.js");
+        }
+        else if (needsScroll)
+        {
+            needsScroll = false;
+            module.InvokeVoid("scroll", reader);
+        }
+    }
 
     private string Classes(State.Paragraph p)
     {
@@ -11,16 +28,16 @@
     }
 }
 
-<div class="reader">
+<div @ref="reader" class="reader">
     @foreach (var p in State.Log)
     {
         <p @key="p.Seq" class="@Classes(p)">@p.Text</p>
-        @if (!p.Seen) { p.Seen = true; }
+        @if (!p.Seen) { p.Seen = true; needsScroll = true; }
     }
 
     @foreach (var (idx, p) in State.Choices)
     {
         <p @key="p.Seq" class="choice @Classes(p)" @onclick="() => {State.Choose(idx);}">@p.Text</p>
-        @if (!p.Seen) { p.Seen = true; }
+        @if (!p.Seen) { p.Seen = true; needsScroll = true; }
     }
 </div>

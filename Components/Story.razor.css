@@ -1,5 +1,6 @@
 .reader {
     overflow-y: auto;
+    scroll-behavior: smooth;
     background-color: #e8e9c9;
 }
 
