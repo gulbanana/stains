@@ -5,7 +5,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var story = await HTTP.GetStringAsync("script.json");
+        var story = await HTTP.GetStringAsync("script.json?v=" + Guid.NewGuid().ToString());
         game = new(story);
     }
 }
