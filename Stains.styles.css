@@ -55,6 +55,7 @@ path.selectable:hover[b-ngav9om89g] {
 /* /Components/Story.razor.rz.scp.css */
 .reader[b-224sekauji] {
     overflow-y: auto;
+    scroll-behavior: smooth;
     background-color: #e8e9c9;
 }
 
