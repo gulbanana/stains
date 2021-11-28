@@ -4,13 +4,14 @@ namespace Stains.State;
 
 public class Narrative
 {
-    private Story story;
+    private readonly Story story;
     private int pseq;
+    private bool continueOnce;
 
     public readonly List<Paragraph> Log = new();
     public readonly List<(int, Paragraph)> Choices = new();
     public readonly List<string> Tags = new();
-    private bool continueOnce;
+    public readonly List<(int, string)> Moves = new();
 
     public Narrative(Story story)
     {
@@ -37,8 +38,14 @@ public class Narrative
             {
                 foreach (var choice in story.currentChoices)
                 {
-                    Console.WriteLine(choice);
-                    Choices.Add((choice.index, new(pseq + choice.index, choice.text)));
+                    if (choice.text.StartsWith("move:"))
+                    {
+                        Moves.Add((choice.index, choice.text[5..]));
+                    }
+                    else
+                    {
+                        Choices.Add((choice.index, new(pseq + choice.index, choice.text)));
+                    }
                 }
             }
         }

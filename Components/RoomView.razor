@@ -1,6 +1,8 @@
 @code {
     [Parameter] public string Path { get; set; }
     [Parameter] public bool IsCurrent { get; set; }
+    [Parameter] public bool IsAvailable { get; set; }
+    [Parameter] public Action OnMove { get; set; }
 }
 
-<path class="@(IsCurrent ? "floor" : "")" d="@Path" />
+<path class="@(IsCurrent ? "floor" : "") @(IsAvailable ? "selectable" : "")" d="@Path" @onclick="OnMove" />

@@ -29,6 +29,19 @@ public class Game
             Narrative.Tags.Clear();            
         }
 
+        if (Narrative.Moves.Any())
+        {
+            foreach (var move in Narrative.Moves)
+            {
+                Blueprint.AllRooms[move.Item2].DoMove = () => 
+                {
+                    Blueprint.ClearMoves();
+                    Narrative.Choose(move.Item1);
+                };
+            }
+            Narrative.Moves.Clear();
+        }
+
         Updated?.Invoke();
     }
 
@@ -37,7 +50,7 @@ public class Game
         if (tag.StartsWith("move"))
         {
             var roomName = tag[5..];
-            var room = Blueprint.GetAllRooms().SingleOrDefault(r => r.Name.Equals(roomName, StringComparison.OrdinalIgnoreCase));
+            var room = Blueprint.AllRooms[roomName];
             Blueprint.CurrentLocation = room;
             return;
         }

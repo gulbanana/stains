@@ -5,9 +5,14 @@
 
 <div class="backdrop">
     <svg viewBox="0 0 1200 900">
-        @foreach (var room in State.GetVisibleRooms())
+        @foreach (var kvp in State.AllRooms)
         {
-            <RoomView Path="@room.Path" IsCurrent="@(State.CurrentLocation == room)" />
+            var room = kvp.Value;
+            <RoomView Path="@room.Path" IsCurrent="@(State.CurrentLocation == room)" IsAvailable="@(room.DoMove != null)" OnMove="@room.DoMove" />
+        }
+        @foreach (var door in State.AllDoors)
+        {
+            <path d="@door" stroke="white" stroke-width="10" />
         }
     </svg>
 </div>
