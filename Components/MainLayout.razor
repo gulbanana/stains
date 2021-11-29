@@ -12,19 +12,12 @@
     }
 }
 
-@if (game != null)
-{
-    <div class="column-container">
-        <main>
-            <CascadingValue Value="game" IsFixed>
-                <RAF UpdateState="game.Update">
-                    @Body
-                </RAF>
-            </CascadingValue>
-        </main>
-    </div>
-}
-else
-{
-    <span>Loading data...</span>
-}
+<div class="column-container">
+    <main>
+        <CascadingValue Value="game" IsFixed>
+            <RAF UpdateState="game.Update">
+                @Body
+            </RAF>
+        </CascadingValue>
+    </main>
+</div>
