@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>warnings</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+	<INKLECATE_PATH Condition="'$(INKLECATE_PATH)' == ''">inklecate</INKLECATE_PATH>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,10 +16,13 @@
 
   <ItemGroup>
     <Watch Include="script.ink" />
+	<UpToDateCheckInput Include="script.ink" />
+	<UpToDateCheckBuilt Include="script.ink.json" />
+	<EmbeddedResource Include="script.ink.json" />
   </ItemGroup>
 
-  <Target Name="Inklecate" BeforeTargets="CoreCompile" Inputs="script.ink" Outputs="wwwroot/script.json">
-    <Exec Command="inklecate -o wwwroot/script.json script.ink" />
-    <Message Importance="high" Text="script.ink -> wwwroot\script.json" />
+  <Target Name="Inklecate" BeforeTargets="CoreCompile" Inputs="script.ink" Outputs="script.ink.json">
+    <Exec Command="&quot;$(INKLECATE_PATH)&quot; script.ink" />
+    <Message Importance="high" Text="script.ink -> script.ink.json" />
   </Target>
 </Project>

@@ -3,10 +3,12 @@
 @code {
     private State.Game game;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        var story = await HTTP.GetStringAsync("script.json?v=" + Guid.NewGuid().ToString());
-        game = new(story);
+        using var stream = typeof(Program).Assembly.GetManifestResourceStream("Stains.script.ink.json");
+        using var reader = new StreamReader(stream!);
+        var script = reader.ReadToEnd();
+        game = new(script);
     }
 }
 
